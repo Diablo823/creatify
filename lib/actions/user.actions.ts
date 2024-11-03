@@ -67,7 +67,7 @@ export async function deleteUser(clerkId: string) {
         const deletedUser = await User.findByIdAndDelete(userToDelete._id);
         revalidatePath("/")
 
-        return deletedUser ? JSON.parse(JSON.stringify(deleteUser)) : null;
+        return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
 
     } catch (error) {
         handleError(error);
@@ -86,7 +86,7 @@ export async function updateCredits(userId: string, creditFee: number) {
             { new: true }
         )
 
-        if (!updatedUserCredits) throw new Error("Usre Credits Update Failed!");
+        if (!updatedUserCredits) throw new Error("User Credits Update Failed!");
         
         return JSON.parse(JSON.stringify(updatedUserCredits))
     } catch (error) {
