@@ -61,6 +61,7 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
           images={images?.data}
           totalPages={images?.totalpages}
           page={page}
+          title='Your Works'
         />
       </section>
     </>

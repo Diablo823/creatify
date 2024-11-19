@@ -15,11 +15,13 @@ const Collection = ({
   images,
   totalPages = 1,
   page,
+  title
 }: {
   images: IImage[];
   totalPages?: number;
   page: number;
   hasSearch?: boolean;
+  title: string;
 }) => {
 
     const router = useRouter();
@@ -43,7 +45,7 @@ const Collection = ({
     return (
         <>
             <div className="collection-heading">
-                <h2 className="h2-bold text-dark-600">Recent Edits</h2>
+                <h2 className="h2-bold text-dark-600">{title}</h2>
                 {hasSearch && <Search />}
             </div>
 

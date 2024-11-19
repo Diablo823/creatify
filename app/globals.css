@@ -220,11 +220,11 @@
 
   /* Home Page */
   .home {
-    @apply sm:flex-center hidden h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 shadow-inner;
+    @apply sm:flex-center mb-4 h-52 sm:h-72 flex-col gap-4 rounded-[20px] border bg-banner bg-cover bg-no-repeat p-10 shadow-inner;
   }
 
   .home-heading {
-    @apply h1-semibold max-w-[500px] flex-wrap text-center text-white shadow-sm;
+    @apply text-[20px] font-bold sm:h1-semibold max-w-[500px] flex-wrap text-center text-white shadow-sm mb-4;
   }
 
   /* Credits Page */

@@ -20,7 +20,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
           Unleash Your Creative Vision With Creatify
         </h1>
         
-        <ul className='flex-center w-full gap-20'>
+        <ul className='flex-center w-full gap-3 sm:gap-4 md:gap-8 lg:gap-20'>
           {navLinks.slice(1, 5).map((link) => (
             <Link
               key={link.route}
@@ -35,7 +35,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
                 height={24}
               />
             </li>
-            <p className='text-center text-white p-14-medium'>{link.label}</p>
+            <p className='text-center text-white text-[12px] font-bold sm:p-14-medium leading-[15px]'>{link.label}</p>
             </Link>
           ))}
         </ul>
@@ -47,6 +47,7 @@ const Home = async ({ searchParams }: SearchParamProps) => {
             images={images?.data}
             totalPages={images?.totalPage}
             page={page}
+            title='Explore Page'
           />
       </section>
     </>
