@@ -4,7 +4,12 @@ import { IImage } from "@/lib/database/models/image.model";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import Card from "./Card";
-import { Pagination, PaginationContent, PaginationNext, PaginationPrevious } from "../ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 import { Button } from "../ui/button";
 import { formUrlQuery } from "@/lib/utils";
 import Search from "./Search";
@@ -15,7 +20,7 @@ const Collection = ({
   images,
   totalPages = 1,
   page,
-  title
+  title,
 }: {
   images: IImage[];
   totalPages?: number;
@@ -23,47 +28,45 @@ const Collection = ({
   hasSearch?: boolean;
   title: string;
 }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-    const router = useRouter();
-    const searchParams = useSearchParams();
+  // PAGINATION HANDLER
 
-    // PAGINATION HANDLER
+  const onPageChange = (action: string) => {
+    const pageValue = action === "next" ? Number(page) + 1 : Number(page) - 1;
 
-    const onPageChange = (action: string) => {
-        const pageValue = action === 'next' ? Number(page) + 1 : Number(page) - 1;
+    const newUrl = formUrlQuery({
+      searchParams: searchParams.toString(),
+      key: "page",
+      value: pageValue,
+    });
 
-        const newUrl = formUrlQuery({
-            searchParams: searchParams.toString(),
-            key: "page",
-            value: pageValue,
-        });
+    router.push(newUrl, { scroll: false });
+  };
 
-        router.push(newUrl, { scroll: false })
-    }
+  return (
+    <>
+      <div className="collection-heading">
+        <h2 className="h2-bold text-dark-600">{title}</h2>
+        {hasSearch && <Search />}
+      </div>
 
-
-    return (
-        <>
-            <div className="collection-heading">
-                <h2 className="h2-bold text-dark-600">{title}</h2>
-                {hasSearch && <Search />}
+      {images.length > 0 ? (
+        <div className="columns-2 md:columns-3 lg:columns-5">
+          {images.map((image) => (
+            <div key={image._id.toString()} className="mb-4 break-inside-avoid">
+              <Card image={image} />
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className="collection-empty">
+          <p className="p-20-semibold">Empty List!</p>
+        </div>
+      )}
 
-           {images.length > 0 ? (
-            <div className="columns-2 md:columns-3">
-                {images.map((image) => (
-                    <div key={image._id.toString()} className="mb-4 break-inside-avoid">
-                        <Card image={image} />
-                    </div>
-                ))}
-            </div>
-           ) : (
-            <div className="collection-empty">
-                <p className="p-20-semibold">Empty List!</p>
-            </div>
-           )}
-
-           {/* {totalPages > 1 && (
+      {/* {totalPages > 1 && (
             <Pagination className="mt-10">
                 <PaginationContent className="flex w-full">
                     <Button
@@ -88,9 +91,10 @@ const Collection = ({
                 </PaginationContent>
             </Pagination>
            )} */}
-        </>
-    );
+   </>
+  );
 };
 
-
 export default Collection;
+
+
