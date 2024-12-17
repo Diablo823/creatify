@@ -10,7 +10,7 @@ const Card = ({ image }: { image: IImage }) => {
     return (
         <Link
             href={`/transformations/${image._id}`}
-            className="block w-full cursor-pointer rounded-[16px] border-2 border-purple-200/15 bg-white p-0.5 shadow-xl shadow-purple-200/10 transition-all hover:shadow-purple-200/20 mb-4"
+            className="block w-full cursor-pointer rounded-2xl border-2 border-purple-200/15 bg-white p-0.5 shadow-xl shadow-purple-200/10 transition-all hover:shadow-purple-200/20 mb-4"
         >
             <CldImage 
                 src={image.publicId}
@@ -19,7 +19,7 @@ const Card = ({ image }: { image: IImage }) => {
                 height={image.height}
                 {...image.config}
                 loading='lazy'
-                className="w-full rounded-[12px] object-cover"
+                className="w-full rounded-2xl object-cover"
                 sizes='(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw'
             />
 
