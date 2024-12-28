@@ -3,7 +3,8 @@ import "./globals.css";
 import { IBM_Plex_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-
+import { Suspense } from "react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const IBMPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -22,12 +23,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{
-      variables: { colorPrimary: '#624cf5' }
-    }}>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: "#624cf5" },
+      }}
+    >
       <html lang="en">
-        <body className={cn("font-IBMPlex antialiased", IBMPlex.variable)} suppressHydrationWarning>
-          {children}
+        <body
+          className={cn("font-IBMPlex antialiased", IBMPlex.variable)}
+          suppressHydrationWarning
+        >
+          <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
         </body>
       </html>
     </ClerkProvider>

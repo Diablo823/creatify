@@ -2,7 +2,7 @@
 
 import { IImage } from "@/lib/database/models/image.model";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import Card from "./Card";
 import {
   Pagination,
@@ -13,7 +13,7 @@ import {
 import { Button } from "../ui/button";
 import { formUrlQuery } from "@/lib/utils";
 import Search from "./Search";
-
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const Collection = ({
   hasSearch = false,
@@ -56,7 +56,9 @@ const Collection = ({
         <div className="columns-2 md:columns-3 lg:columns-5">
           {images.map((image) => (
             <div key={image._id.toString()} className="mb-4 break-inside-avoid">
-              <Card image={image} />
+              <Suspense fallback={<LoadingSpinner />}>
+                <Card image={image} />
+              </Suspense>
             </div>
           ))}
         </div>
@@ -91,10 +93,8 @@ const Collection = ({
                 </PaginationContent>
             </Pagination>
            )} */}
-   </>
+    </>
   );
 };
 
 export default Collection;
-
-
