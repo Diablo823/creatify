@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Sidebar />
       <Mobilenav />
       <div className="root-container">
-        <div className="mx-auto px-5 md:px-8 w-full text-dark-400 p-16-regular max-w-7xl">{children}</div>
+        <div className="px-2 w-full text-dark-400 p-16-regular">{children}</div>
       </div>
       <Toaster />
     </main>

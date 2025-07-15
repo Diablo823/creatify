@@ -53,7 +53,7 @@ const Collection = ({
       </div>
 
       {images.length > 0 ? (
-        <div className="columns-2 md:columns-3 lg:columns-5">
+        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 xl:columns-6 gap-2">
           {images.map((image) => (
             <div key={image._id.toString()} className="mb-4 break-inside-avoid">
               <Suspense fallback={<LoadingSpinner />}>
